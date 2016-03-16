@@ -1,4 +1,5 @@
 <?php
+//test for regEnd
 $pName = $_POST['name'];
 $pEmail = $_POST['email'];
 $cid = $_POST['custId'];
