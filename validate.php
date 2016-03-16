@@ -4,6 +4,7 @@ $pName = $_POST['name'];
 $pEmail = $_POST['email'];
 $cid = $_POST['custId'];
 $pid = $_POST['pin'];
+$hashpin = md5($pid);
 
 $together = $pName.$pEmail.$pid;
 
@@ -22,6 +23,7 @@ $user->addChild('name', $pName);
 $user->addChild('email', $pEmail);
 $user->addChild('id', $cid);
 $user->addChild('pin', $pid);
+$user->addChild('hash', $hashpin);
 
 $xml->asXML($file);
 //$xml->save($file)
