@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<users>
+    <user>
+        <name>Shri</name>
+        <email>shrikar.code@gmail.com</email>
+        <id>5000</id>
+        <pin>7979</pin>
+    </user>
+    <user>
+        <name>John</name>
+        <email>john.doe@gmail.com</email>
+        <id>5001</id>
+        <pin>1234</pin>
+    </user>
+<user><name>js</name><email>ko@kj.com</email><id>5002</id><pin>7894</pin></user></users>

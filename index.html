@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="style.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+        <script src="https://cdn.jsdelivr.net/holder/2.9.0/holder.min.js">
+        </script>
+    </head>
+    <body>
+        <div class="top-gutter"></div>
+        <div class="container">
+            <div class="col-md-6 text-right">
+                <h1 class="display-4">
+                    Simplest way<br>to order things
+                </h1>
+                <p class="h5">
+                    Resgister with your Name and Email<br>and we'll give you a number<br>to order food that you love! 
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+                        <form class="form">
+                            <div class="form-group">
+                                <label for="exampleInputName2">Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Jane Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail2">Email</label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="jane.doe@example.com">
+                            </div>
+                            <div class="form-group" id="pass">
+                                <label for="pass_feild">PIN</label>
+                                <input type="text" class="form-control" id="pass_field" placeholder="8888">
+                            </div>
+                            <div class="form-group" hidden>
+                                <label for="custId">ID Number</label>
+                                <input type="text" id="custId" class="form-control" placeholder="CustId" disabled>
+                            </div>
+                        </form>
+                        <button type="" class="btn btn-primary" id="register_user">Register Me!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                fetchId();
+
+                $('#register_user').click(function(){
+                    var inputName = $('#inputName').val();
+                    var inputEmail = $('#inputEmail').val();
+                    var custId = $('#custId').val();
+                    var pass = $('#pass_field').val();
+                    ajaxCall(inputName,inputEmail,custId,pass); 
+                });
+
+                //function calls.
+                function ajaxCall(inputName,inputEmail,custId,pass){
+                    $.ajax({
+                        url: 'validate.php', //sends data to this php file
+                        type:'POST', //post method of get and post
+                        data: {
+                            name: inputName,
+                            email: inputEmail,
+                            custId: custId,
+                            pin: pass
+                        },
+                        success: function(data) {
+                            console.log("printing " + data);
+                        },
+                        error: function(textStatus, errorThrow, thirderror){
+                            console.log(textStatus);
+                            console.log(errorThrow);
+                            console.log(thirderror);//
+                        }
+                    }); 
+                };
+
+                function fetchId(){
+                    $.ajax({
+                        url: 'fetchLast.php', //sends data to this php file
+                        type:'POST', //post method of get and post
+                        data: "",
+                        success: function(data) {
+                            var newId = parseInt(data) + 1;
+                            $('#custId').val(newId);
+                        },
+                        error: function(textStatus, errorThrow, thirderror){
+                            console.log(textStatus);
+                            console.log(errorThrow);
+                            console.log(thirderror);//
+                        }
+                    }); 
+                };
+            });
+        </script>
+    </body>
+</html>
