@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE vxml SYSTEM "http://www.w3.org/TR/voicexml20/vxml.dtd">
+
+
+<vxml version="2.0" xmlns="http://www.w3.org/2001/vxml">
+    <form id="login">
+        <block>
+            Hi
+        </block>
+        <field name="phone_number" type="phone">
+            <prompt>Please say or key in your phone number </prompt>
+        </field>
+        <field name="pin" type="digits">
+            <prompt>Please say or enter your 4 digit PIN code</prompt>
+        </field>
+        <block>
+            Ok Thanks.
+            <submit next="http://lyle.smu.edu/~schonkar/cse7347/a7/validate.php" method="get" namelist="phone_number pin"/>
+        </block>
+    </form>
+</vxml>
